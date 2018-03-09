@@ -20,12 +20,12 @@ define([
             this.surfaceWidth = null;
             this.surfaceHeight = null;
             this.gameTime = 0;
-            this.spawnTime = 5;
+            this.spawnTime = 1;
             this.mouseDown = false;
 
             this.cursor = {x:0,y:0};
             this.bubbleRadius = 30;
-            this.numBubblesToSpawn = 1;
+            this.numBubblesToSpawn = 3;
         }
 
         /*

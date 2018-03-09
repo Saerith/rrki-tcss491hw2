@@ -56,7 +56,6 @@ let init = function() {
             ctx.canvas.width*.2, ctx.canvas.height*.4, 
             ctx.canvas.width*.8, boundsWidth))
 
-
         // other platforms
         gameEngine.addEntity(new Entity.Terrain(gameEngine, 
             0, ctx.canvas.height*.6, 
