@@ -33,6 +33,7 @@ define([
         */
         init (ctx) {
             this.ctx = ctx;
+            this.pause = false;
             this.surfaceWidth = this.ctx.canvas.width;
             this.surfaceHeight = this.ctx.canvas.height;
             this.startInput();
@@ -91,6 +92,11 @@ define([
 
             this.ctx.canvas.addEventListener("mouseup", function (e) {
                 that.mouseDown = false;
+            }, false);
+
+            this.ctx.canvas.addEventListener("keypress", function (e) {
+                if (String.fromCharCode(e.which) === ' ') that.pause = !that.pause;
+                e.preventDefault();
             }, false);
 
             console.log('Input started');
@@ -187,8 +193,10 @@ define([
         loop () {
             this.ctx.width = window.innerWidth;
             this.ctx.height = window.innerHeight;
-            this.gameTime += 1;
-            this.update();
+            if (!this.pause) {
+                this.gameTime += 1;
+                this.update();
+            }
             this.draw();
         }
 
