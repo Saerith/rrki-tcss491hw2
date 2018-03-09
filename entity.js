@@ -114,7 +114,7 @@ define([
             this.name = "bubble";
             this.game = game;
             this.shrinkTime = 50;
-            this.gravity = 1;
+            this.gravity = .6;
 
             let maxDistanceFromCursor = 50;
             let xPosNeg = Math.random() < 0.5 ? -1 : 1;
@@ -152,8 +152,25 @@ define([
 
             this.terminalVel = this.radius/3;
             this.mass = this.radius;
-            this.yVel = Math.min(this.yVel + this.gravity*this.gravity, this.terminalVel);
-            this.xVel = Math.min(this.xVel, this.terminalVel);
+
+            this.yVel += this.gravity*this.gravity;
+
+            if (Math.abs(this.yVel) > this.terminalVel) {
+                if (this.yVel > 0) {
+                    this.yVel = Math.min(this.yVel, this.terminalVel);
+                } else {
+                    this.yVel = Math.max(this.yVel, -1 * this.terminalVel);
+                }
+            }
+            
+            if (Math.abs(this.xVel) > this.terminalVel) {
+                if (this.xVel > 0 ) {
+                    this.xVel = Math.min(this.xVel, this.terminalVel);
+                } else {
+                    this.xVel = Math.max(this.xVel, -1 * this.terminalVel);
+                }
+            }
+            
             this.y += this.yVel;
             this.x += this.xVel;
             // and pop if they're too small
