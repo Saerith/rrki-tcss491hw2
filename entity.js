@@ -123,7 +123,9 @@ define([
             this.x = x + xPosNeg*(Math.random()*maxDistanceFromCursor);
             this.y = y + yPosNeg*(Math.random()*maxDistanceFromCursor); 
             this.radius = Math.floor(Math.random() * 20) + 10;
-            this.color="aqua";
+            this.rgb = [Math.floor(Math.random() * 200) + 55,
+            Math.floor(Math.random() * 200) + 55, 
+            Math.floor(Math.random() * 200) + 55];
             this.mass = this.radius;
 
             // bubble pops at it's min size of 1-10, and can shrink by up to that much each update
@@ -137,7 +139,7 @@ define([
         draw(ctx) {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-            ctx.strokeStyle = this.color;
+            ctx.strokeStyle = "rgb(" + this.rgb[0] + "," + this.rgb[1] + "," + this.rgb[2] + ")";
             ctx.stroke();
             ctx.closePath();
         }
